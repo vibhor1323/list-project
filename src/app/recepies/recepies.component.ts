@@ -1,5 +1,6 @@
 import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { Recepie } from './recepie-model';
 
 @Component({
   selector: 'app-recepies',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   
 })
 export class RecepiesComponent implements OnInit {
-
+  selectedRecipe !: Recepie;
   constructor() { }
 
   ngOnInit(): void {
