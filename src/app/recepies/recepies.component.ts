@@ -12,9 +12,15 @@ import { Recepie } from './recepie-model';
 })
 export class RecepiesComponent implements OnInit {
   selectedRecipe !: Recepie;
-  constructor() { }
+  constructor(private recepieService : RecepieService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.recepieService.recipeSelected
+    .subscribe(
+      (recipe : Recepie) => {
+        this.selectedRecipe = recipe
+      }
+    );
   }
 
 }
