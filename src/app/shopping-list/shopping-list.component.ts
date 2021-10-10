@@ -18,7 +18,7 @@ export class ShoppingListComponent implements OnInit {
   }
 
   onIncredientAdded(incredient: Ingrediants){
-    this.ingrediants.push()
+    this.ingrediants.push(incredient)
 
 
   }
