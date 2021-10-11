@@ -1,5 +1,4 @@
 import { Component, ElementRef,OnInit,ViewChild } from '@angular/core';
-// import { Event } from '@angular/router';
 import { Ingrediants } from 'src/app/shared/ingrediants.model'; 
 import { ShoppingService } from '../shopping-list.service';
 
