@@ -1,4 +1,6 @@
-import { Component, ElementRef,OnInit,ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Ingrediants } from 'src/app/shared/ingrediants.model'; 
 import { ShoppingService } from '../shopping-list.service';
 
@@ -7,26 +9,47 @@ import { ShoppingService } from '../shopping-list.service';
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.css']
 })
-export class ShoppingEditComponent implements OnInit {
-  @ViewChild('nameInput',{static:false}) nameInputRef !: ElementRef;
-  @ViewChild('amountInput',{static:false}) amountInputRef !: ElementRef;
-
-  
-
+export class ShoppingEditComponent implements OnInit, OnDestroy{
+  @ViewChild('f') slForm !: NgForm;
+  subscription !:Subscription;
+  editMode =false;
+  editedItemIndex !: number;
+  editedItem !: Ingrediants;
 
 
   constructor(private slService: ShoppingService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.subscription = this.slService.startedEditing
+      .subscribe(
+        (index: number)=>{
+            this.editedItemIndex=index;
+            this.editMode =true;
+            this.editedItem=this.slService.getIngredient(index);
+            this.slForm.setValue({
+              name:this.editedItem.name,
+              amount:this.editedItem.amount
+            })
+        }
+      );
   }
 
-  onAddItem( e: Event){
+  onAddItem(e:Event ,form:NgForm){
     e.preventDefault();
-    const ingName = this.nameInputRef.nativeElement.value;
-    const ingAmount = this.amountInputRef.nativeElement.value;
-    const newIngredient =new Ingrediants(ingName,ingAmount);
-    this.slService.addIncredients(newIngredient);
+    const value =form.value;
+    const newIngredient =new Ingrediants(value.name,value.amount);
+    if(this.editMode)
+    {
+      this.slService.updateIngredients(this.editedItemIndex,newIngredient);
 
+    }
+    else{
+    this.slService.addIncredients(newIngredient);
+    }
+
+  }
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
 
   }
 

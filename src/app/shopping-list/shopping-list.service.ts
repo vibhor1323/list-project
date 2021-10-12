@@ -1,9 +1,11 @@
 import { EventEmitter } from "@angular/core";
 import { Subject } from "rxjs";
+// import { threadId } from "worker_threads";
 import { Ingrediants } from "../shared/ingrediants.model";
 
 export class ShoppingService{
     ingredientsChanged = new Subject<Ingrediants[]>();
+    startedEditing =new Subject<number>();
     private ingrediants : Ingrediants[] =[
         new Ingrediants('Apples',5),
         new Ingrediants('Tomatoes',10),
@@ -11,6 +13,9 @@ export class ShoppingService{
 
     getIncredients(){
         return this.ingrediants.slice();
+    }
+    getIngredient(index:number){
+        return this.ingrediants[index];
     }
 
     addIncredients( ingredients: Ingrediants){
@@ -22,6 +27,10 @@ export class ShoppingService{
         this.ingrediants.push(...ingrediants);
         this.ingredientsChanged.next(this.ingrediants.slice())
 
+    }
+    updateIngredients(index:number, newIngrediant:Ingrediants){
+        this.ingrediants[index]=newIngrediant;
+        this.ingredientsChanged.next(this.ingrediants.slice());
     }
 
      
