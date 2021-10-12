@@ -1,7 +1,7 @@
-import { style } from '@angular/animations';
+
 import { Component, OnInit } from '@angular/core';
 import { RecepieService } from './recepie-list.service';
-import { Recepie } from './recepie-model';
+
 
 @Component({
   selector: 'app-recepies',
@@ -11,16 +11,11 @@ import { Recepie } from './recepie-model';
   
 })
 export class RecepiesComponent implements OnInit {
-  selectedRecipe !: Recepie;
-  constructor(private recepieService : RecepieService) { }
+  
+  constructor() { }
 
   ngOnInit() {
-    this.recepieService.recipeSelected
-    .subscribe(
-      (recipe : Recepie) => {
-        this.selectedRecipe = recipe
-      }
-    );
+   
   }
 
 }
