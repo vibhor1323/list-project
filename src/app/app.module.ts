@@ -13,6 +13,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { ShoppingService } from './shopping-list/shopping-list.service';
 import { AppRoutingModule } from './app-routing.module';
+// import { StartComponent } from './recepies/recepies/start/start.component';
+import { RecepiesStartComponent } from './recepies/recepies-start/recepies-start.component';
+import { RecepieEditComponent } from './recepies/recepie-edit/recepie-edit.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { AppRoutingModule } from './app-routing.module';
     RecepieItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    DropdownDirective
+    DropdownDirective,
+    RecepiesStartComponent,
+    RecepieEditComponent
   ],
   imports: [
     BrowserModule,
