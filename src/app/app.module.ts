@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecepiesStartComponent } from './recepies/recepies-start/recepies-start.component';
 import { RecepieEditComponent } from './recepies/recepie-edit/recepie-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RecepieService } from './recepies/recepie-list.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [ShoppingService],
+  providers: [ShoppingService,RecepieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

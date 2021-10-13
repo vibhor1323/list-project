@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+// import { relative } from 'path';
+// import { threadId } from 'worker_threads';
 import { RecepieService } from '../recepie-list.service';
 import { Recepie } from '../recepie-model';
 
@@ -15,7 +17,8 @@ export class RecepieEditComponent implements OnInit {
   recipeForm !: FormGroup;
 
   constructor(private route: ActivatedRoute,
-              private recipeService: RecepieService) {
+              private recipeService: RecepieService,
+              private router: Router) {
 
                }
 
@@ -42,18 +45,27 @@ export class RecepieEditComponent implements OnInit {
       else{
         this.recipeService.addRecipe(newRecipe);
       }
+      this.onCancel();
   }
+  onCancel(){
+    this.router.navigate(['../'],{relativeTo: this.route});
+    }
   onAddIngrediant(){
     (<FormArray>this.recipeForm.get('ingrediants')).push(
       new  FormGroup({
         'name':new FormControl(null,Validators.required),
         'amount':new FormControl(null,[
-          Validators.required,
-          Validators.pattern(/^[1-9]+[0-9]*$/)
+          // Validators.required,
+          // Validators.pattern(/^[1-9]+[0-9]*$/)
         ])
       })
-    )
+    );
   }
+  onDeleteIngrediant(index:number){
+    (<FormArray>this.recipeForm.get('ingrediants')
+    ).removeAt(index);
+  }
+  
   get controls() { // a getter!
     return (<FormArray>this.recipeForm.get('ingrediants')).controls;
   }
