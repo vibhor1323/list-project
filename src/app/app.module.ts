@@ -19,6 +19,7 @@ import { RecepieEditComponent } from './recepies/recepie-edit/recepie-edit.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecepieService } from './recepies/recepie-list.service';
 import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AuthComponent } from './auth/auth.component';
     DropdownDirective,
     RecepiesStartComponent,
     RecepieEditComponent,
-    AuthComponent
+    AuthComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
