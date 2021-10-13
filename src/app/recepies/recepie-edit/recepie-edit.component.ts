@@ -51,13 +51,15 @@ export class RecepieEditComponent implements OnInit {
     this.router.navigate(['../'],{relativeTo: this.route});
     }
   onAddIngrediant(){
+    
     (<FormArray>this.recipeForm.get('ingrediants')).push(
       new  FormGroup({
         'name':new FormControl(null,Validators.required),
         'amount':new FormControl(null,[
-          // Validators.required,
-          // Validators.pattern(/^[1-9]+[0-9]*$/)
+          Validators.required,
+          Validators.pattern(/^[1-9]+[0-9]*$/)
         ])
+      
       })
     );
   }
