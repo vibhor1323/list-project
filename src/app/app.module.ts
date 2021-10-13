@@ -18,6 +18,7 @@ import { RecepiesStartComponent } from './recepies/recepies-start/recepies-start
 import { RecepieEditComponent } from './recepies/recepie-edit/recepie-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecepieService } from './recepies/recepie-list.service';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { RecepieService } from './recepies/recepie-list.service';
     ShoppingEditComponent,
     DropdownDirective,
     RecepiesStartComponent,
-    RecepieEditComponent
+    RecepieEditComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
