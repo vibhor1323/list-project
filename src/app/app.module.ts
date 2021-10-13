@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { RecepiesComponent } from './recepies/recepies.component';
@@ -38,7 +38,8 @@ import { RecepieService } from './recepies/recepie-list.service';
     NgbModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [ShoppingService,RecepieService],
   bootstrap: [AppComponent]
