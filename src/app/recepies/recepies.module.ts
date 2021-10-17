@@ -1,7 +1,7 @@
-import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
+import { SharedModule } from "../shared/shared.module";
 import { RecepieDetailComponent } from "./recepie-detail/recepie-detail.component";
 import { RecepieEditComponent } from "./recepie-edit/recepie-edit.component";
 import { RecepieItemComponent } from "./recepie-list/recepie-item/recepie-item.component";
@@ -22,8 +22,8 @@ import { RecepiesComponent } from "./recepies.component";
     imports:[
         RouterModule,
         ReactiveFormsModule,
-        CommonModule,
-        RecepiesRoutingModule
+        RecepiesRoutingModule,
+        SharedModule
     ],
     exports:[
         RecepiesComponent,
