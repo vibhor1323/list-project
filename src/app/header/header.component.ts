@@ -3,7 +3,9 @@ import { style } from '@angular/animations';
 import { DataStorageService } from "../shared/data-storage.service";
 import { AuthResponseData, AuthService } from "../auth/auth.service";
 import { Subscription } from "rxjs";
-import { User } from "../auth/user.model";
+import { Store } from "@ngrx/store";
+import * as fromApp from '../store/app.reducer';
+import { map } from "rxjs/operators";
 
 @Component({
     selector:'app-header',
@@ -14,10 +16,14 @@ export class HeaderComponent implements OnInit{
     isAuthenticated =false;   
     private userSub !:Subscription;
     constructor(private dataStorageService: DataStorageService,
-    private authService: AuthService){
+    private authService: AuthService,
+    private store:Store<fromApp.AppState>){
 }
     ngOnInit(){
-        this.authService.user.subscribe(user =>{
+        this.userSub= this.store
+        .select('auth')
+        .pipe(map(authState => authState.user))
+        .subscribe(user =>{
             this.isAuthenticated= !!user;
         });
         

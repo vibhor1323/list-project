@@ -69,7 +69,7 @@ export class RecepieEditComponent implements OnInit {
   }
   
   get controls() { // a getter!
-    return (<FormArray>this.recipeForm.get('ingrediants')).controls;
+    return (this.recipeForm.get('ingrediants')as FormArray).controls;
   }
 
   private initForm(){

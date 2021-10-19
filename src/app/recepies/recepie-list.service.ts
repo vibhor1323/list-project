@@ -4,6 +4,11 @@ import { Subject } from "rxjs";
 import { Ingrediants } from "../shared/ingrediants.model";
 import { ShoppingService } from "../shopping-list/shopping-list.service";
 import { Recepie } from "./recepie-model";
+import {Store} from "@ngrx/store";
+import * as ShoppingListActions from '../shopping-list/store/shopping-list.actions';
+import * as fromApp from '../store/app.reducer'
+
+
 
 @Injectable()
 export class RecepieService{
@@ -28,8 +33,10 @@ export class RecepieService{
     //   ])
     // ];
     private recipes: Recepie[]=[];
-    constructor(private slService:ShoppingService){
+    constructor(private slService:ShoppingService,
+        private store: Store<fromApp.AppState>){
     }
+
     setRecipes( recipes: Recepie[]){
         this.recipes=recipes;
         this.recipesChanged.next(this.recipes.slice());
@@ -46,7 +53,8 @@ export class RecepieService{
 
     addIngrediantsToShoppingList(ingrediants:Ingrediants[]){
 
-        this.slService.addIngredientss(ingrediants);
+        this.store.dispatch(new ShoppingListActions.AddIngredientss(ingrediants))
+       // this.slService.addIngredientss(ingrediants);
     }
     addRecipe(recipe:Recepie){
         this.recipes.push(recipe);
