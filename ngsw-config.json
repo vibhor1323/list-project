@@ -1,0 +1,44 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html",
+          "/manifest.webmanifest",
+          "/*.css",
+          "/*.js"
+        ]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**",
+          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name":"post",
+      "urls": ["https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAmUvDXLDS045Ytndr4TEHmI3Yv9yKNGLg",
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAmUvDXLDS045Ytndr4TEHmI3Yv9yKNGLg"
+      ],
+      "cacheConfig": {
+        "maxSize": 5,
+        "maxAge": "10m",
+        "timeout": "10s",
+        "strategy": "freshness"
+      }
+    }
+  ]
+}
